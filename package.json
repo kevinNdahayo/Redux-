@@ -1,0 +1,12 @@
+{
+  "name": "redux",
+  "version": "1.0.0",
+  "description": "Redux course",
+  "main": "index.js",
+  "scripts": {
+    "watch": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Ndahayo",
+  "license": "MIT"
+}
