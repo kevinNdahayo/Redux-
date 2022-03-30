@@ -1,6 +1,10 @@
 const redux = require('redux')
+const reduxLogger = require('redux-logger')
+
 const createStore = redux.createStore
 const combineReducers = redux.combineReducers
+const applyMiddleware = redux.applyMiddleware
+const logger = reduxLogger.createLogger()
 
 const BUY_CLOTHES = 'BUY_CLOTHES'
 const BUY_SUIT = 'BUY_SUIT'
@@ -58,7 +62,7 @@ const rootReducer = combineReducers({
   clothes: clothesReducer,
   suit: suitReducer,
 })
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(logger))
 console.log('InitialState', store.getState())
 const unsubscribe = store.subscribe(() => {
   console.log('Updated State', store.getState())
