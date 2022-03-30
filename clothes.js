@@ -1,27 +1,37 @@
-const BUY_CLOTHES = 'Buy clothes'
+const redux = require('redux')
+const createStore = redux.createStore
 
-// Action creator function
-function BuyClothes() {
+const BUY_CLOTHES = 'BUY_CLOTHES'
+
+function buyClothes() {
   return {
     type: BUY_CLOTHES,
-    info: 'Shop High quality clothes',
   }
 }
-
-// Initial state of the application
 const initialState = {
   numOfClothes: 100,
 }
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case BUY_CLOTHES:
       return {
         ...state,
-        numOfClothes: numOfClothes - 1,
+        numOfClothes: state.numOfClothes - 1,
       }
+      break
 
     default:
-      state
+      return state
+      break
   }
 }
+
+const store = createStore(reducer)
+console.log('InitialState', store.getState())
+const unsubscribe = store.subscribe(() => {
+  console.log('Updated State', store.getState())
+})
+store.dispatch(buyClothes())
+store.dispatch(buyClothes())
+store.dispatch(buyClothes())
+unsubscribe()

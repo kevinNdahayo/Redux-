@@ -1,25 +1,21 @@
 const redux = require('redux')
-const createStore = redux.createStore()
+const createStore = redux.createStore
 
 const BUY_CAKE = 'BUY_CAKE'
 
-// Action creater function
+// actionCreator function
 function buyCake() {
   return {
-    Type: BUY_CAKE,
-    info: 'First Redux Action',
+    type: BUY_CAKE,
   }
 }
-
-// Reducer function
-// (prevState, action) => newState
 
 const initialState = {
   numOfCakes: 10,
 }
 
 const reducer = (state = initialState, action) => {
-  switch (action.Type) {
+  switch (action.type) {
     case BUY_CAKE:
       return {
         ...state,
@@ -27,13 +23,14 @@ const reducer = (state = initialState, action) => {
       }
     default:
       return state
+      break
   }
 }
 
 const store = createStore(reducer)
-console.log('Initial state', store.getState())
+console.log('initial state', store.getState())
 const unsubscribe = store.subscribe(() => {
-  console.log(`Updated State`, store.getState())
+  console.log('Updated State', store.getState())
 })
 store.dispatch(buyCake())
 store.dispatch(buyCake())
